@@ -239,10 +239,13 @@ buttonCalc.addActionListener(new ActionListener() {
 		 try { 
 			 //Получить значение X 
 			 Double x = Double.parseDouble(textFieldX.getText()); 
+			 mem1 = Double.parseDouble(textFieldX.getText()); 
 			 //Получить значение Y 
 			 Double y = Double.parseDouble(textFieldY.getText()); 
+			 mem2 = Double.parseDouble(textFieldY.getText()); 
 			//Получить значение Z
 			 Double z = Double.parseDouble(textFieldZ.getText()); 
+			 mem3 = Double.parseDouble(textFieldZ.getText()); 
 			 // Результат
 			 Double result; 
 
@@ -303,9 +306,9 @@ hboxButtons.setBorder(BorderFactory.createLineBorder(Color.PINK));
 	buttonMC.addActionListener(new ActionListener()	{
 		public void actionPerformed(ActionEvent event) {
 			
-			if (memoryId == 1)	mem1 = (double) 0;
-			if (memoryId == 2)	mem2 = (double) 0;
-			if (memoryId == 3)	mem3 = (double) 0;
+			if (memoryId == 1)	{mem1 = (double) 0;textFieldX.setText("0.0"); }
+			if (memoryId == 2)	{mem2 = (double) 0;textFieldY.setText("0.0"); }
+			if (memoryId == 3)	{mem3 = (double) 0;textFieldZ.setText("0.0"); }
 			TextFieldMemory.setText("0.0");
 		}
 	});
@@ -327,9 +330,9 @@ hboxButtons.setBorder(BorderFactory.createLineBorder(Color.PINK));
 			try{
 			Double result = Double.parseDouble(TextFieldResult.getText());
 			
-			if (memoryId == 1) 	{mem1 += result;TextFieldResult.setText(mem1.toString());}
-			if (memoryId == 2)	{mem2 += result;TextFieldResult.setText(mem2.toString());}
-			if (memoryId == 3)	{mem3 += result;TextFieldResult.setText(mem3.toString());}
+			if (memoryId == 1) 	{mem1 += result;TextFieldMemory.setText(mem1.toString());}
+			if (memoryId == 2)	{mem2 += result;TextFieldMemory.setText(mem2.toString());}
+			if (memoryId == 3)	{mem3 += result;TextFieldMemory.setText(mem3.toString());}
 		
 			}catch (NumberFormatException ex) 
 				{ JOptionPane.showMessageDialog(MainFrame.this,
