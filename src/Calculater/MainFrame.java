@@ -60,16 +60,18 @@ private Double mem3 = new Double(0);
 //Формула №1 для рассчёта 
 public Double calculate1(Double x, Double y, Double z) { 
 	
-	if (x == 0)	{
+	//Провекра Х, Х!=0
+	if (x == 0)	{ 
 		JOptionPane.showMessageDialog(MainFrame.this,
-				"x не может равняться нулю", "" +
+				"X не может равняться нулю", " " +
 						"Ошибка ввода", JOptionPane.WARNING_MESSAGE);
 		return 0.0;
 	}
 	
-	if (y == 0)	{
+	//Проверка У, У!=0
+	if (y == 0)	{ 
 		JOptionPane.showMessageDialog(MainFrame.this,
-				"y не может равняться нулю", "" +
+				"Y не может равняться нулю", " " +
 						"Ошибка ввода", JOptionPane.WARNING_MESSAGE);
 		return 0.0;
 	}
@@ -79,9 +81,10 @@ public Double calculate1(Double x, Double y, Double z) {
 
 //Формула №2 для рассчёта 
 public Double calculate2(Double x, Double y, Double z) { 
+	// Проверка Х, Х!=0
 	if (x == 0)	{
 		JOptionPane.showMessageDialog(MainFrame.this,
-				"x не может равняться нулю", "" +
+				"X не может равняться нулю", " " +
 						"Ошибка ввода", JOptionPane.WARNING_MESSAGE);
 		return 0.0;
 	}
@@ -109,6 +112,7 @@ private void addRadioButton(String buttonName, final int formulaId) {
 	hboxFormulaType.add(button); 
 	} 
 
+//установка кнопак памяти
 private void addMemoryRadioButton (String buttonName, final int memoryId)	{
 	JRadioButton button = new JRadioButton(buttonName);
 	
@@ -178,7 +182,7 @@ Box hboxVariables = Box.createHorizontalBox();
 hboxVariables.setBorder(BorderFactory.createLineBorder(Color.ORANGE));   
 //Добавить в контейнер ряд объектов: 
 //Добавить «клей» C2-H1 – для максимального удаления от левого края 
-hboxVariables.add(Box.createHorizontalGlue()); 
+//hboxVariables.add(Box.createHorizontalGlue()); 
 //Добавить подпись для переменной Х 
 hboxVariables.add(labelForX); 
 //Добавить «распорку» C2-H2 шириной 10 пикселов для отступа между  
@@ -189,19 +193,21 @@ hboxVariables.add(textFieldX);
 //Добавить «распорку» C2-H3 шириной 50 пикселов для отступа между  
 //текстовым полем для ввода X и подписью для Y 
 hboxVariables.add(Box.createHorizontalStrut(50)); 
-//Добавить подпись для переменной Y 
+//Добавить подпись для переменной Y
+hboxVariables.add(Box.createHorizontalGlue()); 
 hboxVariables.add(labelForY); 
 //Добавить «распорку» C2-H4 шириной 10 пикселов для отступа между  
 //надписью и текстовым полем для ввода значения Y 
 hboxVariables.add(Box.createHorizontalStrut(10)); 
 //Добавить само текстовое поле для ввода Y 
 hboxVariables.add(textFieldY);
-hboxVariables.add(Box.createHorizontalStrut(50)); 
+hboxVariables.add(Box.createHorizontalStrut(50));
+hboxVariables.add(Box.createHorizontalGlue());
 hboxVariables.add(labelForZ);
 hboxVariables.add(Box.createHorizontalStrut(10));  
 hboxVariables.add(textFieldZ); 
 //Добавить «клей» C2-H5 для максимального удаления от правого края 
-hboxVariables.add(Box.createHorizontalGlue());
+//hboxVariables.add(Box.createHorizontalGlue());
 
 
 //Создать подпись для поля с результатом 
@@ -239,13 +245,10 @@ buttonCalc.addActionListener(new ActionListener() {
 		 try { 
 			 //Получить значение X 
 			 Double x = Double.parseDouble(textFieldX.getText()); 
-			 mem1 = Double.parseDouble(textFieldX.getText()); 
 			 //Получить значение Y 
 			 Double y = Double.parseDouble(textFieldY.getText()); 
-			 mem2 = Double.parseDouble(textFieldY.getText()); 
 			//Получить значение Z
-			 Double z = Double.parseDouble(textFieldZ.getText()); 
-			 mem3 = Double.parseDouble(textFieldZ.getText()); 
+			 Double z = Double.parseDouble(textFieldZ.getText());
 			 // Результат
 			 Double result; 
 
@@ -259,7 +262,7 @@ buttonCalc.addActionListener(new ActionListener() {
 			 } catch (NumberFormatException ex) { 
 				 //В случае исключительной ситуации показать сообщение 
 				 JOptionPane.showMessageDialog(MainFrame.this, "Ошибка в" +
-				 		"формате записи числа с плавающей точкой", "Ошибочный формат числа", 
+				 		" формате записи числа с плавающей точкой", " Ошибочный формат числа", 
 				 		JOptionPane.WARNING_MESSAGE); 
 				 } 
 		 } 
@@ -321,18 +324,18 @@ hboxButtons.setBorder(BorderFactory.createLineBorder(Color.PINK));
 	hBoxMemoryField.add(TextFieldMemory);
 	hBoxMemoryField.add(Box.createHorizontalGlue());
 	
+
 	
 	JButton buttonMplus = new JButton("M+");
 	buttonMplus.addActionListener(new ActionListener(){
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			try{
+			try{	
 			Double result = Double.parseDouble(TextFieldResult.getText());
-			
-			if (memoryId == 1) 	{mem1 += result;TextFieldMemory.setText(mem1.toString());}
-			if (memoryId == 2)	{mem2 += result;TextFieldMemory.setText(mem2.toString());}
-			if (memoryId == 3)	{mem3 += result;TextFieldMemory.setText(mem3.toString());}
+			if (memoryId == 1) 	{mem1 +=result;TextFieldMemory.setText(mem1.toString());}
+			if (memoryId == 2)	{mem2 +=result;TextFieldMemory.setText(mem2.toString());}
+			if (memoryId == 3)	{mem3 +=result;TextFieldMemory.setText(mem3.toString());}
 		
 			}catch (NumberFormatException ex) 
 				{ JOptionPane.showMessageDialog(MainFrame.this,
@@ -368,9 +371,10 @@ contentBox.add(hboxButtons);
 // Добавить контейнер с выбором памяти
 contentBox.add(hBoxMemoryType); 
 //Добавить резултат 
-contentBox.add(hBoxControlButtons); 
+
 /// поле
 contentBox.add(hBoxMemoryField); 
+contentBox.add(hBoxControlButtons); 
 //Добавить «клей» V2 снизу 
 contentBox.add(Box.createVerticalGlue());    
 //Установить «вертикальную коробку» в область содержания главного окна
